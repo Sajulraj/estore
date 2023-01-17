@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h2 class="text-center">Login</h2>
+            <form action="" [formGroup]="loginform" (ngSubmit)="authenticate()">
+                <div class="mb-3"><input type="text" placeholder="enter username" formControlName="username">
+                    <div class="form-text text-danger" *ngIf="username?.touched && username?.invalid">Invalid username</div>
+                </div>
+                <div class="mb-3"><input type="password" placeholder="enter password" formControlName="password">
+                    <div class="form-text text-danger" *ngIf="username?.touched && username?.invalid">Invalid password</div>
+                </div>
+                <div class="mb-3">
+                    <button type="submit" class="btn btn-success" [disabled]="loginform.invalid">Login</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>

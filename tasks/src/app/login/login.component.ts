@@ -1,6 +1,7 @@
 import { TaskService } from './../services/task.service';
 import { Component } from '@angular/core';
 import {FormControl,FormGroup,Validators} from '@angular/forms'
+import {Router} from "@angular/router"
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,7 @@ import {FormControl,FormGroup,Validators} from '@angular/forms'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private service:TaskService){
+  constructor(private service:TaskService,private router:Router){
 
   }
   loginform=new FormGroup(
@@ -27,7 +28,11 @@ get password(){
 }
 authenticate(){
  let data=this.loginform.value
- this.service.getToken(data).then(res=>res.json().then(data=>console.log(data)
+ this.service.getToken(data).then(res=>res.json().then(data=>{
+  let token=data.token
+  localStorage.setItem("token","Token "+token)
+  this.router.navigateByUrl("home")
+ }
  
  ))
   

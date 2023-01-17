@@ -11,10 +11,30 @@ export class TaskService {
       "method":"post",
       "body":JSON.stringify(data),
       "headers":{
-        "contet-type":"application/json"
+        "content-type":"application/json"
       }
     }
 
     return fetch("http://127.0.0.1:8000/token/",options)
 }
+  addTasks(data:any){
+    let token=localStorage.getItem("token")
+    if (token){
+      let option={
+        "method":"post",
+        "body":JSON.stringify(data),
+        "headers":{
+          "content-type":"application/json",
+          "authorization":token
+        }
+      }
+      return fetch("http://127.0.0.1:8000/tasks/",option)
+    
+    }
+    else{
+      return new Promise((res,rej)=>rej("failed to fetch data from resource"))
+    }
+    
+    
+  }
 }

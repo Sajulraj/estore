@@ -1,2 +1,4 @@
-<app-taskadd></app-taskadd>
-<app-tasklist></app-tasklist>
+<app-taskadd (notify)="publish($event)">
+
+</app-taskadd>
+<app-tasklist [inpt]="isTaskadded"></app-tasklist>

@@ -1,5 +1,5 @@
 import { TaskService } from './../services/task.service';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import {FormGroup,FormControl,Validators} from '@angular/forms'
 
 @Component({
@@ -18,8 +18,10 @@ export class TaskaddComponent {
   let data=this.taskform.value
   this.service.addTasks(data).then((res:any)=>res.json()).then(data=>console.log("task created")
   ).catch(err=>alert(err))
+  this.notify.emit(true)
  }
  constructor(private service:TaskService){
 
  }
+ @Output()notify:EventEmitter<boolean>=new EventEmitter<boolean>()
 }
